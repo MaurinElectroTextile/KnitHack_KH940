@@ -10,5 +10,5 @@ For technicals specifications see the service manual : http://maurin.box.free.fr
 To use this programme you must start to knit from the left side of the knitting machine.
 The carriage must be out of the sticheses
 
-This code is a fork from Sokanno KnitHack project : https://github.com/sokanno/KnitHack
-My web page : http://maurin.donneaud.free.fr/
+  - This code is a fork from Sokanno KnitHack project : https://github.com/sokanno/KnitHack
+  - My web page : http://maurin.donneaud.free.fr/
