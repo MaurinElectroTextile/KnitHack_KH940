@@ -1,29 +1,26 @@
-#N canvas 515 22 517 657 10;
-#X msg 40 149 close;
-#X msg 53 171 devices;
-#X obj 66 193 r OUT;
-#X msg 21 127 open 2;
-#X obj 66 234 print;
+#N canvas 404 22 704 670 10;
+#X msg -160 -402 close;
+#X msg -147 -380 devices;
+#X obj -134 -358 r OUT;
+#X msg -179 -424 open 2;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array knit 200 float 0;
 #X coords 0 1 199 0 200 150 1 0 0;
-#X restore 228 -133 graph;
-#X obj 228 170 until;
-#X obj 228 205 f;
-#X obj 256 205 + 1;
-#X msg 291 170 0;
-#X msg 228 123 200;
-#X obj 228 146 trigger f b;
-#X msg 228 331 \; knit \$1 0;
-#N canvas 949 22 293 604 fft 0;
-#X obj 130 72 rfft~;
-#X obj 130 99 *~;
-#X obj 157 99 *~;
-#X obj 130 34 inlet~;
-#X obj 130 128 sqrt~;
-#X obj 35 154 t b b;
-#X obj 193 35 block~ 4095;
-#X obj 35 128 metro 100;
+#X restore 210 -424 graph;
+#X obj 96 -71 until;
+#X obj 96 -37 f;
+#X obj 124 -37 + 1;
+#X msg 159 -71 0;
+#X msg 96 -118 200;
+#X obj 96 -95 trigger f b;
+#N canvas 853 22 293 604 fft 0;
+#X obj 150 72 rfft~;
+#X obj 150 99 *~;
+#X obj 177 99 *~;
+#X obj 150 34 inlet~;
+#X obj 150 128 sqrt~;
+#X obj 213 35 block~ 4095;
+#X obj 35 118 metro 100;
 #X obj 35 249 until;
 #X obj 35 287 f;
 #X obj 63 287 + 1;
@@ -36,14 +33,15 @@
 #X obj 35 387 t f f;
 #X obj 35 479 pack f f f;
 #X obj 35 426 >= 40;
-#X msg 69 557 \; knit \$1 1;
-#X obj 69 531 change;
-#X obj 35 507 unpack f f f;
+#X msg 69 553 \; knit \$1 1;
+#X obj 69 527 change;
+#X obj 35 502 unpack f f f;
 #X obj 149 365 r seuil;
 #X msg 48 72 \; pd dsp \$1;
 #X obj 35 34 inlet;
-#X obj 130 222 tabwrite~ spectrum;
+#X obj 150 182 tabwrite~ spectrum;
 #X obj 35 338 tabread spectrum;
+#X obj 35 144 trigger bang bang;
 #X connect 0 0 1 0;
 #X connect 0 0 1 1;
 #X connect 0 1 2 0;
@@ -51,106 +49,291 @@
 #X connect 1 0 4 0;
 #X connect 2 0 4 0;
 #X connect 3 0 0 0;
-#X connect 4 0 26 0;
-#X connect 5 0 12 0;
-#X connect 5 1 26 0;
-#X connect 7 0 5 0;
+#X connect 4 0 25 0;
+#X connect 6 0 27 0;
+#X connect 7 0 8 0;
 #X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 9 0 16 0;
-#X connect 10 0 9 1;
-#X connect 11 0 9 1;
-#X connect 12 0 13 0;
-#X connect 13 0 8 0;
-#X connect 13 1 11 0;
-#X connect 14 0 18 0;
-#X connect 15 0 17 0;
-#X connect 16 0 27 0;
-#X connect 16 1 18 1;
-#X connect 17 0 19 0;
-#X connect 17 1 18 2;
-#X connect 18 0 22 0;
-#X connect 19 0 14 0;
-#X connect 21 0 20 0;
-#X connect 22 1 21 0;
-#X connect 23 0 19 1;
-#X connect 25 0 24 0;
-#X connect 25 0 7 0;
-#X connect 27 0 15 0;
-#X restore 21 48 pd fft;
+#X connect 8 0 15 0;
+#X connect 9 0 8 1;
+#X connect 10 0 8 1;
+#X connect 11 0 12 0;
+#X connect 12 0 7 0;
+#X connect 12 1 10 0;
+#X connect 13 0 17 0;
+#X connect 14 0 16 0;
+#X connect 15 0 26 0;
+#X connect 15 1 17 1;
+#X connect 16 0 18 0;
+#X connect 16 1 17 2;
+#X connect 17 0 21 0;
+#X connect 18 0 13 0;
+#X connect 20 0 19 0;
+#X connect 21 1 20 0;
+#X connect 22 0 18 1;
+#X connect 24 0 23 0;
+#X connect 24 0 6 0;
+#X connect 26 0 14 0;
+#X connect 27 0 11 0;
+#X connect 27 1 25 0;
+#X restore -179 82 pd fft;
 #N canvas 73 177 1153 478 (subpatch) 0;
 #X array spectrum 200 float 3;
-#A 0 0.295959 0.372574 0.617807 1.29437 3.40168 6.02296 10.3387 3.84472
-4.49706 6.15254 8.37804 41.6792 3.80854 2.25628 1.61733 0.936796 4.29168
-1.17184 2.05733 1.5595 1.19961 4.1879 7.56972 3.74108 1.39122 1.32193
-1.25181 1.53195 0.632449 0.693458 1.49523 0.533898 1.29212 0.73991
-0.718811 0.85992 1.16022 0.304445 0.407738 0.980499 0.550927 0.609262
-0.794094 0.394451 0.480648 0.241358 1.26151 0.552382 0.599941 0.185116
-0.433071 0.542989 0.278891 0.236972 0.45217 0.146069 0.506044 0.435466
-0.206271 0.330956 0.763555 0.160616 0.106325 0.55846 0.488022 1.03828
-0.948545 0.601832 0.169984 0.559651 0.417068 0.0979067 0.234967 0.375854
-0.221242 0.498349 0.11089 0.232508 0.513661 0.180908 0.29198 0.208261
-0.0446245 0.324397 0.104932 0.0688036 1.26951 0.679252 0.493168 0.504436
-0.243205 0.108573 0.558121 0.430783 0.36996 0.277909 0.472842 0.211746
-0.186341 0.375317 0.176266 0.330316 0.394164 0.411816 0.555358 0.344878
-0.346659 0.281981 0.393972 0.371628 0.166239 0.103744 0.336294 0.71195
-0.452618 0.791288 0.277552 0.210779 0.4655 0.632007 0.321564 0.317179
-0.336194 0.542212 0.166253 0.181942 0.268977 0.375976 0.554712 0.125212
-0.290739 0.27412 0.236567 0.356122 0.288228 0.105112 0.113828 0.392707
-0.207317 0.394045 0.139892 0.249424 0.437332 0.270527 0.370444 0.448651
-0.286596 0.138699 0.194088 0.287433 0.0601785 0.180581 0.19792 0.135571
-0.312181 0.297798 0.159775 0.0681384 0.311678 0.159886 0.181562 0.209278
-0.243048 0.206493 0.144092 0.324137 0.128678 0.0429765 0.190652 0.31515
-0.0384737 0.0669141 0.381183 0.0714606 0.284596 0.126364 0.21878 0.0313987
-0.284107 0.194679 0.124573 0.38246 0.147803 0.071412 0.0699945 0.193451
-0.170893 0.262848 0.057827 0.086061 0.283774 0.171069 0.115016 0.172012
-0.137168 0.169112 0.0953135 0.0907142 0.0865147 0.13726;
+#A 0 0.0408936 0.0457994 0.158808 0.271853 0.43643 0.0881644 0.111467
+0.128621 0.0428371 0.171379 0.0856411 0.0542435 0.0664209 0.0226019
+0.010396 0.0248841 0.013321 0.0323518 0.0283777 0.0295826 0.0106784
+0.00437494 0.0169965 0.0128008 0.0120307 0.00667264 0.0118084 0.00159465
+0.0114055 0.0108412 0.0127656 0.00601633 0.0264572 0.0124824 0.00726952
+0.0113704 0.0166541 0.0167187 0.00662386 0.00528192 0.014348 0.0123534
+0.0034483 0.0119376 0.00665459 0.0147242 0.00769294 0.00768578 0.00643251
+0.0138336 0.00382698 0.0253689 0.0126086 0.0171427 0.00994042 0.00522649
+0.00675037 0.00646046 0.0176221 0.00584183 0.00470857 0.00903319 0.0123303
+0.00662022 0.00421896 0.0181219 0.0129342 0.00136666 0.0105535 0.00382844
+0.00456126 0.00783729 0.00949034 0.00930241 0.00351815 0.00761498 0.00308581
+0.00619816 0.00396652 0.00498666 0.00794954 0.00423158 0.00659818 0.0112817
+0.00886358 0.00694698 0.00976093 0.00906868 0.00991637 0.00481701 0.00527746
+0.00154046 0.00999297 0.00291299 0.00176163 0.00273706 0.00657744 0.00175438
+0.00712943 0.00615195 0.0110555 0.0116105 0.00200817 0.00579549 0.00641331
+0.0152907 0.00925007 0.00160205 0.00408184 0.00430726 0.00387994 0.00327033
+0.00331632 0.00340464 0.00241611 0.00317447 0.00628875 0.00566481 0.00769928
+0.00745799 0.00608097 0.0127383 0.00447251 0.00315628 0.00495985 0.0169001
+0.0042478 0.00302281 0.00389797 0.00403244 0.00859616 0.0114278 0.00799981
+0.00510782 0.00110052 0.00817893 0.00667878 0.00282852 0.00144292 0.00468555
+0.00274557 0.00327546 0.00708973 0.00345177 0.00658207 0.00752041 0.00621229
+0.0028021 0.0039368 0.00300381 0.0031764 0.0109806 0.0034908 0.000245821
+0.00100967 0.000960332 0.00508277 0.00820012 0.00380063 0.00958259
+0.00565002 0.00658987 0.00512907 0.00542717 0.00505932 0.00484772 0.00474296
+0.00850584 0.00338207 0.00300617 0.00532237 0.00756095 0.00527094 0.00584684
+0.00761932 0.00425223 0.00341946 0.010374 0.00713157 0.00702814 0.00736206
+0.00829886 0.0037976 0.00219125 0.00334743 0.00470453 0.00237624 0.00212468
+0.00497374 0.00903244 0.00538534 0.00358647 0.00158128 0.00415611 0.00145097
+0.00576074 0.00385048 0.00356409 0.00409022 0.00200046;
 #X coords 0 100 200 0 200 150 1 0 0;
-#X restore 21 -133 graph;
-#X obj 54 23 adc~;
-#X obj 228 44 s seuil;
-#X obj 231 23 hsl 128 15 0 50 0 0 empty empty empty -2 -8 0 10 -4034
--1 -1 1900 1;
-#X obj 21 23 tgl 15 0 empty empty empty 17 7 0 10 -4034 -1 -1 0 1;
-#X obj 339 254 tabread knit;
-#X obj 339 278 list prepend;
-#X obj 318 303 list;
-#X obj 228 101 trigger bang bang bang;
-#X obj 354 303 trigger list;
-#X obj 228 230 trigger float float;
-#X obj 21 352 s INPUT;
-#X obj 228 78 r INPUT;
-#X obj 32 324 metro 1000;
-#X obj 32 303 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
-1;
-#X obj 318 386 s OUT;
-#X obj 21 280 sel 64;
-#X obj 21 257 comport 2 38400;
-#N canvas 759 22 456 399 req 1;
-#X obj 129 321 qlist;
-#X msg 204 226 rewind;
-#X msg 213 251 next;
-#X text 252 224 go to beginning (and stop);
-#X text 249 250 single-step forward;
-#X text 331 142 read a file;
-#X text 333 115 write one;
-#X msg 129 115 clear;
-#X msg 188 115 write ./pattern_00.txt;
-#X msg 194 143 read ./pattern_00.txt;
+#X restore -15 -424 graph;
+#X obj 190 -263 s seuil;
+#X obj 246 5 tabread knit;
+#X obj 246 29 list prepend;
+#X obj 225 61 list;
+#X obj 96 -141 trigger bang bang bang;
+#X obj 261 61 trigger list;
+#X obj 96 -12 trigger float float;
+#X obj 225 144 s OUT;
+#X obj -179 -281 sel 64;
+#X obj -179 -304 comport 2 38400;
+#X obj 266 144 s OUT;
+#N canvas 578 287 109 204 bip 0;
+#X obj 28 28 inlet;
+#X obj 28 147 osc~;
+#X obj 28 177 dac~;
+#X obj 28 51 t b b;
+#X msg 28 109 0;
+#X msg 60 110 800;
+#X obj 28 79 delay 100;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 3 0 6 0;
+#X connect 3 1 5 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 4 0;
+#X restore -80 -234 pd bip;
+#X obj -87 37 readsf~;
+#X msg -87 -128 bang;
+#X obj -87 -59 openpanel;
+#X obj 96 -164 metro 500;
+#X obj -87 85 dac~;
+#X obj 96 -187 r START_STOP;
+#X obj -49 -83 s START_STOP;
+#X msg -49 -128 1;
+#X obj -48 84 s START_STOP;
+#X msg -48 60 0;
+#N canvas 219 22 996 723 fiddle 0;
+#X obj 272 532 phasor~;
+#X obj 541 626 unpack;
+#X floatatom 541 676 0 0 0 0 - - -;
+#X msg 447 459 print;
+#X obj 272 510 sig~;
+#X floatatom 272 488 0 0 0 0 - - -;
+#X obj 272 466 mtof;
+#X floatatom 272 444 0 0 0 0 - - -;
+#X floatatom 555 653 0 0 0 0 - - -;
+#X obj 541 586 route 1 2 3 4;
+#X obj 624 626 unpack;
+#X floatatom 624 676 0 0 0 0 - - -;
+#X floatatom 638 653 0 0 0 0 - - -;
+#X obj 708 626 unpack;
+#X floatatom 708 676 0 0 0 0 - - -;
+#X floatatom 722 653 0 0 0 0 - - -;
+#X obj 399 626 unpack;
+#X floatatom 399 676 0 0 0 0 - - -;
+#X floatatom 413 653 0 0 0 0 - - -;
+#X obj 344 555 *~;
+#X obj 332 404 loadbang;
+#X obj 363 532 sig~;
+#X floatatom 363 510 0 0 0 0 - - -;
+#X msg 332 488 1;
+#X msg 363 488 0;
+#X floatatom 476 676 0 0 0 0 - - -;
+#X obj 291 676 print attack;
+#X obj 200 676 print pitch;
+#X msg 565 55 \; pd dsp 1;
+#X text 470 49 click here;
+#X text 470 71 to start DSP;
+#X text 236 14 FIDDLE - pitch estimator and sinusoidal peak finder
+;
+#X text 18 80 The Fiddle object estimates the pitch and amplitude of
+an incoming sound \, both continuously and as a stream of discrete
+"note" events. Fiddle optionally outputs a list of detected sinusoidal
+peaks used to make the pitch determination. Fiddle is described theoretically
+in the 1998 ICMC proceedings \, reprinted on http://man104nfs.ucsd.edu/~mpuckett.
+;
+#X text 18 180 Fiddle's creation arguments specify an analysis window
+size \, the maximum polyphony (i.e. \, the number of simultaneous "pitches"
+to try to find) \, the number of peaks in the spectrum to consider
+\, and the number of peaks \, if any \, to output "raw." The outlets
+give discrete pitch (a number) \, detected attacks in the amplitude
+envelope (a bang) \, one or more voices of continuous pitch and amplitude
+\, overall amplitude \, and optionally a sequence of messages with
+the peaks.;
+#X text 18 306 The analysis hop size is half the window size so in
+the example shown here \, one analysis is done every 512 samples (11.6
+msec at 44K1) \, and the analysis uses the most recent 1024 samples
+(23.2 msec at 44K1). The minimum frequency that Fiddle will report
+is 2-1/2 cycles per analysis windows \, or about 108 Hz. (just below
+MIDI 45.);
+#X text 679 545 number of pitch outlets (1-3 \, default 1);
+#X text 679 567 number of peaks to find (1-100 \, default 20);
+#X text 679 589 number of peaks to output (default 0.);
+#X msg 451 117 amp-range 40 50;
+#X msg 449 237 reattack 100 10;
+#X msg 448 292 npartial 7;
+#X msg 448 180 vibrato 50 0.5;
+#X text 570 101 a low and high amplitude threshold: if signal amplitude
+is below the low threshold \, no pitches or peaks are output. The high
+threshold is a minimum at which "cooked" outputs may appear.;
+#X text 570 162 A period in milliseconds (50) over which the raw pitch
+may not deviate more than an interval in half-tones (0.5) from the
+average pitch to report it as a note to the "cooked" pitch outlet.
+;
+#X text 570 223 A period in milliseconds (100) over which a re-attack
+is reported if the amplitude rises more than (1) dB. The re-attack
+will result in a "bang" in the attack outlet and may give rise to repeated
+notes in the cooked pitch output.;
+#X text 152 442 test input pitch;
+#X text 340 454 test input;
+#X text 340 467 amplitude;
+#X obj 420 555 fiddle~ 1024 1 20 3;
+#X text 548 700 individual sinusoidal components;
+#X text 476 698 amplitude;
+#X text 486 713 (dB);
+#X text 399 698 raw pitch;
+#X text 386 722 and amplitude;
+#X text 374 739 (up to 3 outputs);
+#X text 297 696 bang on;
+#X text 297 718 attack;
+#X text 195 696 cooked pitch;
+#X text 212 713 output;
+#X text 555 555 ------ arguments:;
+#X msg 272 422 57;
+#X msg 450 341 auto 1;
+#X msg 450 363 auto 0;
+#X msg 449 428 bang;
+#X text 571 426 poll current values --- useful if not in auto mode
+\,;
+#X text 570 284 Higher partials are weighed less strongly than lower
+ones in determining the pitch. This specifies the number of the partial
+(7) which will be weighted half as strongly as the fundamental.;
+#X text 570 345 start and stop "auto" mode (on by default.) If off
+\, output only appears on "bang" (poll mode).;
+#X text 571 458 print out all settings;
+#X text 679 523 window size (128-2048 \, default 1024);
+#X msg 450 385 npoints 2048;
+#X text 572 394 number of points in analysis window (power of 2 \,
+128-2048);
+#X msg 449 406 npoints 1024;
+#X obj 233 56 inlet~;
+#X connect 0 0 19 0;
+#X connect 1 0 2 0;
+#X connect 1 1 8 0;
+#X connect 3 0 48 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 9 0 1 0;
+#X connect 9 1 10 0;
+#X connect 9 2 13 0;
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 13 0 14 0;
+#X connect 13 1 15 0;
+#X connect 16 0 17 0;
+#X connect 16 1 18 0;
+#X connect 19 0 48 0;
+#X connect 20 0 60 0;
+#X connect 20 0 23 0;
+#X connect 21 0 19 1;
+#X connect 22 0 21 0;
+#X connect 23 0 22 0;
+#X connect 24 0 22 0;
+#X connect 38 0 48 0;
+#X connect 39 0 48 0;
+#X connect 40 0 48 0;
+#X connect 41 0 48 0;
+#X connect 48 0 27 0;
+#X connect 48 1 26 0;
+#X connect 48 2 16 0;
+#X connect 48 3 25 0;
+#X connect 48 4 9 0;
+#X connect 60 0 7 0;
+#X connect 61 0 48 0;
+#X connect 62 0 48 0;
+#X connect 63 0 48 0;
+#X connect 69 0 48 0;
+#X connect 71 0 48 0;
+#X connect 72 0 48 0;
+#X restore -179 105 pd fiddle;
+#X obj 190 -422 vsl 15 149 0 127 0 0 empty empty empty 0 -9 0 10 -257985
+-1 -1 5700 1;
+#X msg 96 121 \; knit \$1 \$2;
+#X obj 96 88 pack f f;
+#X obj 96 33 t f b;
+#X obj 141 61 f;
+#X obj 169 61 + 1;
+#X obj 199 61 % 2;
+#X obj -179 -39 r START_STOP;
+#X obj -179 -258 trigger bang bang;
+#X obj -179 -180 s knitting;
+#X obj 329 86 r START_STOP;
+#X msg -87 -37 open \$1;
+#N canvas 401 27 576 479 req_play 0;
+#X obj 137 351 qlist;
+#X msg 255 166 rewind;
+#X msg 354 256 next;
+#X text 304 164 go to beginning (and stop);
+#X text 390 255 single-step forward;
+#X text 456 133 read a file;
+#X text 381 106 write one;
+#X msg 137 166 clear;
+#X msg 236 106 write ./pattern_00.txt;
+#X msg 319 135 read ./pattern_00.txt;
 #X obj 25 -14 inlet;
 #X obj 25 64 list append 1 2;
 #X msg 25 40 add;
 #X obj 25 14 t b a;
 #X obj 25 87 list trim;
-#X obj 129 352 outlet;
-#X obj 188 -14 inlet;
-#X obj 188 14 sel 1;
-#X obj 25 255 spigot;
-#X msg 58 205 1;
-#X msg 69 227 0;
-#X obj 188 41 t b b b;
-#X obj 266 42 t b b;
-#X connect 0 0 15 0;
+#X obj 137 412 outlet;
+#X obj 137 -14 inlet;
+#X obj 354 221 r knitting;
+#X msg 260 399 \; knit \$1;
+#X obj 184 412 print LIST;
+#X obj 137 376 t a a;
+#X obj 137 14 sel 1 0;
+#X obj 137 63 trigger bang bang;
+#X obj 255 63 trigger bang bang bang;
+#X msg 384 86 write ./pattern_00.txt;
+#X obj 25 166 print LIST;
+#X connect 0 0 20 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 7 0 0 0;
@@ -161,53 +344,90 @@
 #X connect 12 0 11 0;
 #X connect 13 0 12 0;
 #X connect 13 1 11 1;
-#X connect 14 0 18 0;
-#X connect 16 0 17 0;
-#X connect 17 0 21 0;
-#X connect 17 1 22 0;
-#X connect 18 0 0 0;
-#X connect 19 0 18 1;
-#X connect 20 0 18 1;
-#X connect 21 0 19 0;
-#X connect 21 1 8 0;
-#X connect 21 2 7 0;
-#X connect 22 0 8 0;
-#X connect 22 1 20 0;
-#X restore 359 364 pd req;
-#X obj 359 386 s OUT;
-#X obj 392 338 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
-1;
-#X connect 0 0 31 0;
-#X connect 1 0 31 0;
-#X connect 2 0 4 0;
-#X connect 2 0 31 0;
-#X connect 3 0 31 0;
+#X connect 14 0 0 0;
+#X connect 14 0 25 0;
+#X connect 16 0 21 0;
+#X connect 17 0 2 0;
+#X connect 20 0 15 0;
+#X connect 20 1 19 0;
+#X connect 21 0 22 0;
+#X connect 21 1 23 0;
+#X connect 22 0 7 0;
+#X connect 22 1 8 0;
+#X connect 23 0 1 0;
+#X connect 23 1 9 0;
+#X connect 23 2 24 0;
+#X connect 24 0 0 0;
+#X restore 266 112 pd req_play;
+#X obj -206 -281 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113
+-1 -1;
+#N canvas 578 287 109 204 bip 0;
+#X obj 28 17 inlet;
+#X obj 28 136 osc~;
+#X obj 28 166 dac~;
+#X obj 28 40 t b b;
+#X msg 28 98 0;
+#X obj 28 68 delay 100;
+#X msg 60 99 400;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 3 0 5 0;
+#X connect 3 1 6 0;
+#X connect 4 0 1 0;
+#X connect 5 0 4 0;
+#X connect 6 0 1 0;
+#X restore -160 -204 pd bip;
+#X obj -179 -234 delay 1200;
+#X connect 0 0 22 0;
+#X connect 1 0 22 0;
+#X connect 3 0 22 0;
+#X connect 5 0 6 0;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 7 0 24 0;
-#X connect 8 0 7 1;
-#X connect 9 0 7 1;
-#X connect 10 0 11 0;
-#X connect 11 0 6 0;
-#X connect 11 1 9 0;
-#X connect 15 0 13 1;
-#X connect 17 0 16 0;
-#X connect 18 0 13 0;
-#X connect 19 0 20 0;
-#X connect 20 0 21 1;
-#X connect 20 0 23 0;
-#X connect 21 0 29 0;
-#X connect 21 0 32 0;
-#X connect 22 0 10 0;
-#X connect 22 1 20 1;
-#X connect 22 2 21 0;
-#X connect 23 0 20 1;
-#X connect 24 0 12 0;
-#X connect 24 1 19 0;
-#X connect 26 0 22 0;
-#X connect 27 0 25 0;
-#X connect 28 0 27 0;
-#X connect 30 0 25 0;
-#X connect 31 0 30 0;
-#X connect 32 0 33 0;
-#X connect 34 0 32 1;
+#X connect 6 0 19 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 1;
+#X connect 9 0 10 0;
+#X connect 10 0 5 0;
+#X connect 10 1 8 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 1;
+#X connect 15 0 18 0;
+#X connect 16 0 20 0;
+#X connect 16 0 48 0;
+#X connect 17 0 9 0;
+#X connect 17 1 15 1;
+#X connect 17 2 16 0;
+#X connect 18 0 15 1;
+#X connect 19 0 39 0;
+#X connect 19 1 14 0;
+#X connect 21 0 44 0;
+#X connect 22 0 21 0;
+#X connect 25 0 11 1;
+#X connect 25 0 29 0;
+#X connect 25 0 29 1;
+#X connect 25 1 34 0;
+#X connect 26 0 27 0;
+#X connect 27 0 47 0;
+#X connect 28 0 17 0;
+#X connect 30 0 28 0;
+#X connect 32 0 31 0;
+#X connect 34 0 33 0;
+#X connect 36 0 13 0;
+#X connect 38 0 37 0;
+#X connect 39 0 38 0;
+#X connect 39 1 40 0;
+#X connect 40 0 41 0;
+#X connect 40 0 38 1;
+#X connect 41 0 42 0;
+#X connect 42 0 40 1;
+#X connect 43 0 11 0;
+#X connect 43 0 25 0;
+#X connect 44 0 51 0;
+#X connect 44 1 24 0;
+#X connect 46 0 48 1;
+#X connect 47 0 25 0;
+#X connect 48 0 23 0;
+#X connect 49 0 44 0;
+#X connect 51 0 45 0;
+#X connect 51 0 50 0;
