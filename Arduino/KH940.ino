@@ -34,7 +34,7 @@ The service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_mach
 #define START_POS_L           13       // 
 #define START_POS_R           239      //
 
-#define HEADER                255      // 
+#define HEADER                64       // 
 #define FOOTER                255      //
 
 byte serialData[DATA];
