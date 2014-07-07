@@ -19,4 +19,16 @@ To use this programme you must start to knit from the left side of the knitting 
 The carriage must be out of the sticheses
 
   - This code is a fork from Sokanno KnitHack project : https://github.com/sokanno/KnitHack
-  - My web page : http://maurin.donneaud.free.fr/
+  - The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
+
+
+Pure Data (patch)
+
+This patch analyse a sound with an FFT algorithm to identify all of it's frequencies
+If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
+
+Sound track format
+  - track : mono
+  - format : .WAV
+  - freq : 44100 Hz
+  - resolution : 16 bits
