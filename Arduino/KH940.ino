@@ -107,7 +107,6 @@ void loop() {
     toggel_left = false;
     stitch = START_POS_L; // set the stitch count to absolut position
     if (DEBUG) Serial.print(F("START_LEFT = ")), Serial.print(stitch), Serial.println();
-    if (!DEBUG) Serial.write(64);
   }
 
   // Start from the LEFT and read the RIGHT end lignes sensors
@@ -124,7 +123,6 @@ void loop() {
     toggel_right = true;
     stitch = START_POS_R; // set the stitch count to absolut position
     if (DEBUG) Serial.print(F("START_RIGHT = ")), Serial.print(stitch), Serial.println();
-    if (!DEBUG) Serial.write(64);
   }
 
   // Start from the RIGHT and read the LEFT end lignes sensors
