@@ -17,7 +17,7 @@ The service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_mach
 */
 
 // HARDWARE CONST
-#define BAUDRATE              57600    // vitesse du port serie
+#define BAUDRATE              38400    // vitesse du port serie
 #define DATA                  200      // number of bytes per frame
 #define SOLENOIDES            16       // number of solenoides
 
