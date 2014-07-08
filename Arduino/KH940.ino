@@ -30,7 +30,7 @@ The service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_mach
 #define END_PIN_L             1        // endLineLeft for analog in
 
 // SOFTWARE CONST
-#define THRESHOLD             500      // end lines sensors threshold
+#define THRESHOLD             400      // end lines sensors threshold
 #define START_POS_L           13       // 
 #define START_POS_R           239      //
 
