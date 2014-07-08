@@ -40,8 +40,9 @@ Sound track format
 Step by step 
  - A : Select the good comport by clicking on 'devices' message
  - B : look the available serial ports on the Pd-extended window
-        -      [comport]: available serial ports:
-        -      1	/dev/tty.Bluetooth-PDA-Sync
+  - [comport]: available serial ports:
+  - 1	/dev/tty.Bluetooth-PDA-Sync
+  - 2   /dev/ttyACM1
  - C : edit the 'open' message to change the corresponding serial port number
         - édition mode : Alt-Ctrl+E
  - D : clic on the 'open *' to open the good comport
