@@ -11,11 +11,11 @@ We will then experiment hands on with field recordings of our surrounding enviro
 BROTHER KH-940
 
 For technicals specifications see the service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_machine_service_manual.pdf
-  - 200 steacheses
-  - Two end lines sensors
-  - One encoder wille with two sensors mounted on it :
-    - The first sensor is composed by two photointerrupter embedded into a single component (SHARP IA06). This double sensor is used to sens the direction ot the carriage
-    - The second sensor is a single photo interrupter used for the phase (SHARP - GP1A52LRJ00F)
+- 200 steacheses
+- Two end lines sensors
+- One encoder wille with two sensors mounted on it :
+  - The first sensor is composed by two photointerrupter embedded into a single component (SHARP IA06). This double sensor is used to sens the direction ot the carriage
+  - The second sensor is a single photo interrupter used for the phase (SHARP - GP1A52LRJ00F)
 
 The Arduino firmware
 
@@ -32,14 +32,14 @@ This patch will analyse a sound file with an FFT algorithm to identify all of it
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Sound track format
-  - track : mono
-  - format : .WAV
-  - freq : 44100 Hz
-  - resolution : 16 bits
+- track : mono
+- format : .WAV
+- freq : 44100 Hz
+- resolution : 16 bits
 
-A : load a sound
-B : play this sound from the beginning to the end
-C : start knitting
+- A : load a sound
+- B : play this sound from the beginning to the end
+- C : start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
