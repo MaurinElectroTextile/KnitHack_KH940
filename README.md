@@ -21,6 +21,16 @@ The Arduino firmware
 
 The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
 This firmware is a fork of Sokanno KnitHack project : https://github.com/sokanno/KnitHack
+Before to flash the Arduino with the main code
+ -  KnitHack_KH940 / Arduino / KH940 / KH940.ino
+You will need to set up the THRESHOLD value of the main sketch by using this calibration sketch :
+ - KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
+This sketch will give you the endStop sensor values. You will need to see the max value of the two endLignes sensors and choose your THRESHOLD under this max values.
+The next step is to calibrate :
+ - START_POS_L value 
+ - START_POS_R value
+...
+
 
 Pure Data (patch/program)
 
