@@ -38,9 +38,16 @@ Sound track format
  - resolution : 16 bits
 
 Step by step 
- - A : load a sound
- - B : play this sound from the beginning to the end
- - C : start knitting
+ - A : Select the good comport by clicking on 'devices' message
+ - B : look the available serial ports on the Pd-extended window
+        - 0  /dev/tty*
+        - 1  /dev/tty*
+ - C : edit the 'open' message to change the corresponding serial port number
+        - édition mode : Alt-Ctrl+E
+ - D : clic on the 'open *' to open the good comport
+ - E : load a sound
+ - F : play this sound from the beginning to the end
+ - G : start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
