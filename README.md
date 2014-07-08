@@ -1,3 +1,5 @@
+This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014/
+
 "Since the 19th century, home knitting machines were a popular manufacturing tool which allowed knitters to produce rapidly knitted items to sell or for household crafts.  The possibility to use jacquard patterns started with the use of punched hole cards and began to be computerised in the 80's. The immediate and low raw material resource needed to produce a knitted surface is what make knitting machines mobile and accessible for experimenting and prototyping. Since the late 80's these knitting machines have stopped been produced.
 These last years hackers and makers have started to open up knitting machines and found new ways to hack them by allowing the machines to be controlled directly by a modern computer. These hacked knitting machines become a sort of textile printer. Having a direct communication between digital tools and the knitting machine pushes the boundaries of traditional knitted patterns and gives us the opportunity to think of new way's in conceiving patterns . 
 
@@ -22,9 +24,10 @@ The carriage must be out of the sticheses
   - The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
 
 
-Pure Data (patch)
+Pure Data (patch/program)
+This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video : http://puredata.info/downloads/pd-extended
 
-This patch analyse a sound with an FFT algorithm to identify all of it's frequencies
+This patch analyse a sound file with an FFT algorithm to identify all of it's frequencies.
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Sound track format
