@@ -1,3 +1,6 @@
+// Use this sketch to set up the THRESHOLD value in the main Arduino code
+// #define THRESHOLD 400 // end lines sensors threshold
+
 int endLineLeftAPin = 1;
 int endLineRightAPin = 0;
 
