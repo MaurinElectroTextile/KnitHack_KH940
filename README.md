@@ -26,9 +26,9 @@ Pure Data (patch/program)
 
 This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video.
 
-To use this patch you must install the Pure Data Softwear programming environment : http://puredata.info/downloads/pd-extended
+To use the Pure Data patch you must install the Pure Data Softwear : http://puredata.info/downloads/pd-extended
 Then you can open the patch : /PureData/KH940_soundKniting.pd
-This patch analyse a sound file with an FFT algorithm to identify all of it's frequencies.
+This patch will analyse a sound file with an FFT algorithm to identify all of it's frequencies.
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Sound track format
@@ -36,6 +36,10 @@ Sound track format
   - format : .WAV
   - freq : 44100 Hz
   - resolution : 16 bits
+
+A : load a sound
+B : play this sound from the beginning to the end
+C : start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
