@@ -33,10 +33,11 @@ If the volume of a specific frequency is above a certain threshold the correspon
 
 Sound track format
  - track : mono
- - format : .WAV
+ - format : WAV
  - freq : 44100 Hz
  - resolution : 16 bits
 
+Step by step 
  - A : load a sound
  - B : play this sound from the beginning to the end
  - C : start knitting
