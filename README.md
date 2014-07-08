@@ -37,9 +37,9 @@ Sound track format
 - freq : 44100 Hz
 - resolution : 16 bits
 
-- A : load a sound
-- B : play this sound from the beginning to the end
-- C : start knitting
+ - A : load a sound
+ - B : play this sound from the beginning to the end
+ - C : start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
