@@ -32,10 +32,10 @@ This patch will analyse a sound file with an FFT algorithm to identify all of it
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Sound track format
-- track : mono
-- format : .WAV
-- freq : 44100 Hz
-- resolution : 16 bits
+ - track : mono
+ - format : .WAV
+ - freq : 44100 Hz
+ - resolution : 16 bits
 
  - A : load a sound
  - B : play this sound from the beginning to the end
