@@ -45,7 +45,7 @@ Step by step
   - 2   /dev/ttyACM1
  - C : edit the 'open 0' message to change the corresponding serial port number
   - édition mode : Alt-Ctrl+E
-  - open 0 or open 1... 
+  - change the number of the message 'open 0' by the one you want
  - D : clic on the 'open 0' to open the good comport
  - E : load a sound
  - F : play this sound from the beginning to the end
