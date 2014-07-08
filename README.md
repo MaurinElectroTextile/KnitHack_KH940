@@ -43,9 +43,10 @@ Step by step
   - [comport]: available serial ports:
   - 1	/dev/tty.Bluetooth-PDA-Sync
   - 2   /dev/ttyACM1
- - C : edit the 'open' message to change the corresponding serial port number
-        - édition mode : Alt-Ctrl+E
- - D : clic on the 'open *' to open the good comport
+ - C : edit the 'open 0' message to change the corresponding serial port number
+  - édition mode : Alt-Ctrl+E
+  - open 0 or open 1... 
+ - D : clic on the 'open 0' to open the good comport
  - E : load a sound
  - F : play this sound from the beginning to the end
  - G : start knitting
