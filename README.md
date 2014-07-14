@@ -12,7 +12,7 @@ We will then experiment hands on with field recordings of our surrounding enviro
         
 
 BROTHER KH-940
-===
+=========
 
 For technicals specifications see the service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_machine_service_manual.pdf
 - 200 steacheses
@@ -22,6 +22,7 @@ For technicals specifications see the service manual : http://maurin.box.free.fr
   - The second sensor is a single photo interrupter used for the phase (SHARP - GP1A52LRJ00F)
 
 The Arduino firmware
+=========
 
 The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
 This firmware is a fork of Sokanno KnitHack project : https://github.com/sokanno/KnitHack
@@ -37,6 +38,7 @@ The next step is to calibrate :
 
 
 Pure Data (patch/program)
+=========
 
 This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video.
 
