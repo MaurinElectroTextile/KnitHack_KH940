@@ -12,7 +12,7 @@ We will then experiment hands on with field recordings of our surrounding enviro
         
 
 BROTHER KH-940
-========
+===
 
 For technicals specifications see the service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_machine_service_manual.pdf
 - 200 steacheses
