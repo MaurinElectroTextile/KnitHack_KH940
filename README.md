@@ -1,3 +1,6 @@
+KnitHack KH940
+=========
+
 This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014/
 
 "Since the 19th century, home knitting machines were a popular manufacturing tool which allowed knitters to produce rapidly knitted items to sell or for household crafts.  The possibility to use jacquard patterns started with the use of punched hole cards and began to be computerised in the 80's. The immediate and low raw material resource needed to produce a knitted surface is what make knitting machines mobile and accessible for experimenting and prototyping. Since the late 80's these knitting machines have stopped been produced.
@@ -9,6 +12,7 @@ We will then experiment hands on with field recordings of our surrounding enviro
         
 
 BROTHER KH-940
+========
 
 For technicals specifications see the service manual : http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_machine_service_manual.pdf
 - 200 steacheses
