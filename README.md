@@ -54,6 +54,7 @@ Sound track format
  - resolution : 16 bits
 
 Step by step 
+=========
  - A : Select the good comport by clicking on 'devices' message
  - B : look the available serial ports on the Pd-extended window
   - [comport]: available serial ports:
