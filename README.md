@@ -1,7 +1,8 @@
 KnitHack KH940
 =========
 
-This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014/
+- This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014
+- The Arduino firmware is a fork of Sokanno KnitHack project : https://github.com/sokanno/KnitHack
 
 "Since the 19th century, home knitting machines were a popular manufacturing tool which allowed knitters to produce rapidly knitted items to sell or for household crafts.  The possibility to use jacquard patterns started with the use of punched hole cards and began to be computerised in the 80's. The immediate and low raw material resource needed to produce a knitted surface is what make knitting machines mobile and accessible for experimenting and prototyping. Since the late 80's these knitting machines have stopped been produced.
 These last years hackers and makers have started to open up knitting machines and found new ways to hack them by allowing the machines to be controlled directly by a modern computer. These hacked knitting machines become a sort of textile printer. Having a direct communication between digital tools and the knitting machine pushes the boundaries of traditional knitted patterns and gives us the opportunity to think of new way's in conceiving patterns . 
@@ -25,13 +26,14 @@ Arduino firmware
 =========
 
 The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
-This firmware is a fork of Sokanno KnitHack project : https://github.com/sokanno/KnitHack
-Before to flash the Arduino with the main code
--  KnitHack_KH940 / Arduino / KH940 / KH940.ino
-You will need to set up the THRESHOLD value of the main sketch by using this calibration sketch :
-- KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
+
+Before to flash the Arduino with the main code you will need to set up the THRESHOLD value of the main sketch by using this calibration sketch : KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
 This sketch will give you the endStop sensor values. You will need to see the max value of the two endLignes sensors and choose your THRESHOLD under this max values.
-The next step is to calibrate :
+
+
+The next step is to flash the main code and perform the calibration :
+- KnitHack_KH940 / Arduino / KH940 / KH940.ino
+These two variables allow you to set the knitter's stitches positions.
 - START_POS_L value 
 - START_POS_R value
 ...
