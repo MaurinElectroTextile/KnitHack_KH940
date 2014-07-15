@@ -42,10 +42,10 @@ Pure Data soft
 
 This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video.
 
-To use the Pure Data patch you must install the Pure Data Softwear : http://puredata.info/downloads/pd-extended
-Then you can open the patch : /PureData/KH940_soundKniting.pd
-This patch will analyse a WAV sound file with an FFT algorithm to identify all of it's frequencies.
-If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
+        To use the Pure Data patch you must install the Pure Data Softwear : http://puredata.info/downloads/pd-extended
+        Then you can open the patch : /PureData/KH940_soundKniting.pd
+        This patch will analyse a WAV sound file with an FFT algorithm to identify all of it's frequencies.
+        If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Before to load your sample into the Pure Data patch it is necessary to normalize the volume. I use Audacity for that adjustment : http://audacity.sourceforge.net/
 
