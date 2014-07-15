@@ -47,6 +47,8 @@ Then you can open the patch : /PureData/KH940_soundKniting.pd
 This patch will analyse a WAV sound file with an FFT algorithm to identify all of it's frequencies.
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
+Before to load your sample into the Pure Data patch it is necessary to normalize the volume. I use Audacity for that adjustment : http://audacity.sourceforge.net/
+
 Sound track format
  - track : mono
  - format : WAV
