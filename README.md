@@ -21,7 +21,7 @@ For technicals specifications see the service manual : http://maurin.box.free.fr
   - The first sensor is composed by two photointerrupter embedded into a single component (SHARP IA06). This double sensor is used to sens the direction ot the carriage
   - The second sensor is a single photo interrupter used for the phase (SHARP - GP1A52LRJ00F)
 
-The Arduino firmware
+Arduino firmware
 =========
 
 The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
@@ -37,14 +37,14 @@ The next step is to calibrate :
 ...
 
 
-Pure Data (patch/program)
+Pure Data soft
 =========
 
 This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video.
 
 To use the Pure Data patch you must install the Pure Data Softwear : http://puredata.info/downloads/pd-extended
 Then you can open the patch : /PureData/KH940_soundKniting.pd
-This patch will analyse a sound file with an FFT algorithm to identify all of it's frequencies.
+This patch will analyse a WAV sound file with an FFT algorithm to identify all of it's frequencies.
 If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
 
 Sound track format
