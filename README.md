@@ -44,42 +44,41 @@ Softs
 
 This knitHack sound pilot is running with multiple software that will run in addition with Pure Data. The PD patch will analyse the frequencies of the sound with an FFT algorithm to generate the knitting pattern.
 
- - Pure Data : PD is an open source software that offers an accessible visual programming solution.
- - Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
- - QjackCtl : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
- - Audacity : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
+- Pure Data : PD is an open source software that offers an accessible visual programming solution.
+- Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
+- QjackCtl : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
+- Audacity : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
 
-        http://puredata.info/downloads/pd-extended
-        http://audacity.sourceforge.net/
-        http://www.jackaudio.org/downloads/
-        http://qjackctl.sourceforge.net/
-        
+  - http://puredata.info/downloads/pd-extended
+  - http://audacity.sourceforge.net/
+  - http://www.jackaudio.org/downloads/
+  - http://qjackctl.sourceforge.net/
 
 Step by step 
 =========
 
- - A load QjackCtl
-        - réglages > Alsa
-        - start ja      
- - B load Pd-extande
-        - Media > Audio configurations > JACK
- - C load Audacity
-        - load a sound file
-        - play the sound
- - D configure QjackCtl connexions
-        - Audacity > QjackCtl > Pd-extended
- - E open the patch : /PureData/KH940_soundKniting.pd
- - F select the good comport by clicking on 'devices' message
- - g look the available serial ports on the Pd-extended window
-        - [comport]: available serial ports: ...
- - h edit the 'open 0' message to change the corresponding serial port number
-        - édition mode : Alt-Ctrl+E
-        - change the number of the message 'open 0' by the one you want
-        - clic on the 'open 0' to open the good comport
- - F play the sound in Audacity
- - G record the pattern
- - ...
- - G start knitting
+- A load QjackCtl
+  - réglages > Alsa
+  - start ja      
+- B load Pd-extande
+  - Media > Audio configurations > JACK
+- C load Audacity
+  - load a sound file
+  - play the sound
+- D configure QjackCtl connexions
+  - Audacity > QjackCtl > Pd-extended
+- E open the patch : /PureData/KH940_soundKniting.pd
+- F select the good comport by clicking on 'devices' message
+  - look the available serial ports on the Pd-extended window
+  - [comport]: available serial ports: ...
+  - edit the 'open 0' message to change the corresponding serial port number
+  - édition mode : Alt-Ctrl+E
+  - change the number of the message 'open 0' by the one you want
+  - clic on the 'open 0' to open the good comport
+- F play the sound in Audacity
+- G record the pattern
+- ...
+- G start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
