@@ -39,26 +39,32 @@ These two variables allow you to set the knitter's stitches positions.
 ...
 
 
-Pure Data soft
+Softs
 =========
 
-This first program is developed for the Pure Data software, a multi-platform programming environment and open source dedicated to real-time interaction. We chose this software because it offers a type of easily accessible visual programming. In addition, supported by a global community of users it has many extensions dedicated to sound and video.
+This knitHack sound pilot is running with multiple software that will run in addition with Pure Data.
+Pure Data : PD is an open source software that offers an accessible visual programming solution.
+Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
+QjackCtl : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
+Audacity : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
 
-        To use the Pure Data patch you must install the Pure Data Softwear : http://puredata.info/downloads/pd-extended
-        Then you can open the patch : /PureData/KH940_soundKniting.pd
-        This patch will analyse a WAV sound file with an FFT algorithm to identify all of it's frequencies.
-        If the volume of a specific frequency is above a certain threshold the corresponding stitch is triggered.
-
-Before to load your sample into the Pure Data patch it is necessary to normalize the volume. I use Audacity for that adjustment : http://audacity.sourceforge.net/
-
-Sound track format
- - track : mono
- - format : WAV
- - freq : 44100 Hz
- - resolution : 16 bits
+        http://puredata.info/downloads/pd-extended
+        http://audacity.sourceforge.net/
+        http://www.jackaudio.org/downloads/
+        
 
 Step by step 
 =========
+
+ - start QjackCtl
+ - start Pd-extande
+ - open the patch : /PureData/KH940_soundKniting.pd
+ - Start Audacity
+ - Load a sound file
+ 
+The PD patch will analyse the frequencies of the sound with an FFT algorithm
+If the volume of a specific frequency is above a certain threshold the corresponding stitch will be triggered.
+
  - A : Select the good comport by clicking on 'devices' message
  - B : look the available serial ports on the Pd-extended window
   - [comport]: available serial ports:
