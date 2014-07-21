@@ -43,10 +43,10 @@ Softs
 =========
 
 This knitHack sound pilot is running with multiple software that will run in addition with Pure Data.
-Pure Data : PD is an open source software that offers an accessible visual programming solution.
-Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
-QjackCtl : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
-Audacity : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
+ - Pure Data : PD is an open source software that offers an accessible visual programming solution.
+ - Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
+ - QjackCtl : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
+ - Audacity : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
 
         http://puredata.info/downloads/pd-extended
         http://audacity.sourceforge.net/
