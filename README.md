@@ -82,6 +82,6 @@ Step by step
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
-At the end of the row you will hear two bip, one wen you pass the end stop sensor end one juste after that tell you when all stitch's positions are set.
+At the end of the row you will hear two bip, one wen you pass the end stop sensor end one juste after that tell you when all stitch's positions are seted.
 
 If you have questions : maurin.box@gmail.com
