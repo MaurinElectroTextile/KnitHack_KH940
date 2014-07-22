@@ -57,28 +57,27 @@ This knitHack sound pilot is running with multiple software that will run in add
 Step by step 
 =========
 
-- A load QjackCtl
-  - réglages > Alsa
-  - start ja      
+- A load QjackCtl to start jack audio server
+  - select Alsa driver in config
+  - clic start
 - B load Pd-extande
   - Media > Audio configurations > JACK
-- C load Audacity
+- C load Audacity / VLC ...
   - load a sound file
   - play the sound
 - D configure QjackCtl connexions
-  - Audacity > QjackCtl > Pd-extended
+  - Audacity OUTPUT > INPUT Pd-extended OUTPUT > INPUT System
 - E open the patch : /PureData/KH940_soundKniting.pd
-- F select the good comport by clicking on 'devices' message
+- F select the good comport by clicking on 'CHECK_DEVICES'
   - look the available serial ports on the Pd-extended window
   - [comport]: available serial ports: ...
-  - edit the 'open 0' message to change the corresponding serial port number
-  - édition mode : Alt-Ctrl+E
-  - change the number of the message 'open 0' by the one you want
-  - clic on the 'open 0' to open the good comport
-- F play the sound in Audacity
-- G record the pattern
+  - set the corresponding serial port number in PORT numbrer box
+  - clic PORT_ON_OFF
+- G play the sound in Audacity
+- H clic REC
+- I clic SIMULATOR to visualise the pattern
 - ...
-- G start knitting
+- J start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
