@@ -42,7 +42,8 @@ These two variables allow you to set the knitter's stitches positions.
 Softs
 =========
 
-This knitHack sound pilot is running with multiple software that will run in addition with Pure Data. The PD patch will analyse the frequencies of the sound with an FFT algorithm to generate the knitting pattern.
+This knitHack Pure Data patch is working in combination with others sound softwares like VLC or Audacity.
+The PD patch will analyse the frequencies of the sound with an FFT algorithm to generate the knitting pattern.
 
 - Pure Data : PD is an open source software that offers an accessible visual programming solution.
 - Jackd : is a low latency sound server. It allow multiple applications to connect to an audio device, and to share audio between themselves.
