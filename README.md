@@ -50,6 +50,7 @@ The PD patch will analyse the frequencies of the sound with an FFT algorithm to 
   - http://audacity.sourceforge.net/
   - http://www.jackaudio.org/downloads/
   - http://qjackctl.sourceforge.net/
+  - http://www.videolan.org/vlc/ + vlc-plugin-jack
 
 Step by step 
 =========
