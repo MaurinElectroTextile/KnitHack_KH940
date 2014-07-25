@@ -57,7 +57,9 @@ Step by step
 
 ![Texte alternatif](url_de_l'image "texte pour le titre, facultatif")
 
-- A write in a terminal : sudo gpasswd -a "user name" audio 
+- A add user to the audio group
+  - in a terminal : sudo gpasswd -a "user name" audio
+  - restart your user session
 - B load QjackCtl to start jack audio server
   - select Alsa driver in config
   - clic on "START"
