@@ -55,9 +55,11 @@ The PD patch will analyse the frequencies of the sound with an FFT algorithm to 
 Step by step 
 =========
 
+![Texte alternatif](url_de_l'image "texte pour le titre, facultatif")
+
 - A load QjackCtl to start jack audio server
   - select Alsa driver in config
-  - clic on START
+  - clic on "START"
 - B load Pd-extande
   - Media > Audio configurations > JACK Audio Connection Kit
 - C load Audacity
@@ -65,7 +67,7 @@ Step by step
   - load a sound file
   - play the sound
 - D configure QjackCtl connexions
-  - clic on CONNECTER 
+  - clic on "CONNECT" to do the audio patchning
   - Audacity OUTPUT > INPUT Pd-extended OUTPUT > INPUT System
 - E open the patch : /PureData/KH940_soundKniting.pd
 - F select the good comport by clicking on 'CHECK_DEVICES'
