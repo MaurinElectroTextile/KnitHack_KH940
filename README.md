@@ -57,13 +57,15 @@ Step by step
 
 - A load QjackCtl to start jack audio server
   - select Alsa driver in config
-  - clic start
+  - clic on START
 - B load Pd-extande
-  - Media > Audio configurations > JACK
-- C load Audacity / VLC ...
+  - Media > Audio configurations > JACK Audio Connection Kit
+- C load Audacity
+  - Edition > Preferances > Hote > Jack Audio Connection Kit  
   - load a sound file
   - play the sound
 - D configure QjackCtl connexions
+  - clic on CONNECTER 
   - Audacity OUTPUT > INPUT Pd-extended OUTPUT > INPUT System
 - E open the patch : /PureData/KH940_soundKniting.pd
 - F select the good comport by clicking on 'CHECK_DEVICES'
