@@ -57,31 +57,32 @@ Step by step
 
 ![Texte alternatif](url_de_l'image "texte pour le titre, facultatif")
 
-- A load QjackCtl to start jack audio server
+- A write in a terminal : sudo gpasswd -a "user name" audio 
+- B load QjackCtl to start jack audio server
   - select Alsa driver in config
   - clic on "START"
-- B load Pd-extande
+- C load Pd-extande
   - Media > Audio configurations > JACK Audio Connection Kit
-- C load Audacity
+- D load Audacity
   - Edition > Preferances > Peripheriques > Hote > Jack Audio Connection Kit
   - save and restart Audacity
   - Edition > Preferances > Peripheriques > Peripherique > pd_extended_0
   - load a sound file
   - play the sound
-- D configure QjackCtl connexions
+- E configure QjackCtl connexions
   - clic on "CONNECT" to do the audio patchning
   - Audacity OUTPUT > INPUT Pd-extended OUTPUT > INPUT System
-- E open the patch : /PureData/KH940_soundKniting.pd
-- F select the good comport by clicking on 'CHECK_DEVICES'
+- F open the patch : /PureData/KH940_soundKniting.pd
+- G select the good comport by clicking on 'CHECK_DEVICES'
   - look the available serial ports on the Pd-extended window
   - [comport]: available serial ports: ...
   - set the corresponding serial port number in PORT numbrer box
   - clic PORT_ON_OFF
-- G play the sound in Audacity
-- H clic REC
-- I clic SIMULATOR to visualise the pattern
+- H play the sound in Audacity
+- I clic REC
+- J clic SIMULATOR to visualise the pattern
 - ...
-- J start knitting
+- K start knitting
 
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must go from one side to the other.
