@@ -63,7 +63,7 @@ Step by step
 - B load Pd-extande
   - Media > Audio configurations > JACK Audio Connection Kit
 - C load Audacity
-  - Edition > Preferances > Hote > Jack Audio Connection Kit  
+  - Edition > Preferances > Peripheriques > Hote > Jack Audio Connection Kit  
   - load a sound file
   - play the sound
 - D configure QjackCtl connexions
