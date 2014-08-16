@@ -1,11 +1,11 @@
-#N canvas 609 201 609 267 10;
+#N canvas 568 89 602 290 10;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array knit 200 float 0;
 #X coords 0 1 199 0 200 150 1 0 0;
-#X restore 311 -17556 graph;
-#X obj 286 -17553 vsl 20 145 0 50 0 1 SEUIL empty empty 0 -9 0 10 -203904
+#X restore 311 -17526 graph;
+#X obj 286 -17523 vsl 20 145 0 50 0 1 SEUIL empty empty 0 -9 0 10 -203904
 -1 -1 900 1;
-#N canvas 559 77 551 579 controls 1;
+#N canvas 773 55 551 579 controls 0;
 #X msg 263 161 2;
 #X msg 263 228 3;
 #X obj 331 270 s CONTROL;
@@ -15,16 +15,16 @@
 -1 -1;
 #X floatatom 105 187 5 0 0 1 FRAME_POS FRAME_POS -;
 #X floatatom 105 166 5 0 0 1 FRAME_RATE - REC_FRAME_RATE;
-#N canvas 606 542 204 186 gemwin 0;
-#X obj 25 14 inlet;
-#X msg 70 91 destroy \, reset;
-#X obj 25 40 select 1;
-#X obj 25 133 gemwin 400 400;
-#X msg 25 69 create \, 1;
-#X connect 0 0 2 0;
-#X connect 1 0 3 0;
-#X connect 2 0 4 0;
-#X connect 2 1 1 0;
+#N canvas 678 305 261 248 gemwin 0;
+#X obj 40 -1322 inlet;
+#X obj 40 -1296 select 1;
+#X msg 85 -1245 0 \, destroy;
+#X obj 40 -1203 gemwin;
+#X msg 40 -1266 reset \, dimen 700 700 \, create \, 1;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 1 1 2 0;
+#X connect 2 0 3 0;
 #X connect 4 0 3 0;
 #X restore 265 111 pd gemwin;
 #X msg 21 110 \; pd dsp 1;
@@ -38,7 +38,7 @@
 #X obj -86 297 delay 1200;
 #X msg -58 173 close;
 #X msg -136 36 devices;
-#X msg -86 152 open 26;
+#X msg -86 152 open 0;
 #X obj -86 227 comport 0 38400;
 #X obj -56 201 r KNITTING;
 #X obj 105 66 tgl 20 0 empty empty PORT_ON_OFF 25 15 0 15 -228856 -1
@@ -52,7 +52,7 @@
 #X obj 104 233 bng 20 250 50 0 empty empty NEXT_ROW 25 15 0 15 -204786
 -1 -1;
 #X msg 263 253 4;
-#N canvas 952 398 178 213 bip 0;
+#N canvas 950 427 178 213 bip 0;
 #X obj 24 16 inlet;
 #X obj 24 133 osc~;
 #X msg 24 95 0;
@@ -85,7 +85,7 @@
 #X connect 5 0 1 0;
 #X restore -86 322 pd bip;
 #X msg 11 149 50;
-#N canvas 993 341 331 379 stitch_selector 0;
+#N canvas 75 169 331 379 stitch_selector 0;
 #X obj -4 93 until;
 #X obj 38 124 + 1;
 #X msg 101 86 0;
@@ -97,50 +97,52 @@
 #X obj 84 5 r SEUIL;
 #X obj 236 206 f;
 #X obj 264 206 + 1;
-#X obj 294 206 % 4;
 #X obj 236 230 sel 0;
-#X msg 236 255 1;
-#X msg 266 255 0;
 #X obj -4 154 trigger float float float;
 #X obj 143 290 pack float float;
 #X obj -4 254 sel 1;
-#X msg -4 336 \; knit \$1 1;
 #X msg 143 336 \; knit \$1 \$2;
 #X obj -4 283 float;
 #X obj 143 178 trigger float bang;
 #X obj -4 124 float;
 #X obj -4 201 int;
-#X connect 0 0 22 0;
-#X connect 1 0 22 1;
-#X connect 2 0 22 1;
+#X msg 266 255 1;
+#X msg 236 255 0;
+#X msg -4 336 \; knit \$1 0;
+#X obj 292 205 % 5;
+#X obj 232 6 r LINE_SPACE;
+#X connect 0 0 18 0;
+#X connect 1 0 18 1;
+#X connect 2 0 18 1;
 #X connect 3 0 7 0;
-#X connect 4 0 17 0;
-#X connect 5 0 23 0;
+#X connect 4 0 14 0;
+#X connect 5 0 19 0;
 #X connect 6 0 3 0;
 #X connect 7 0 0 0;
 #X connect 7 1 2 0;
 #X connect 8 0 4 1;
 #X connect 9 0 10 0;
-#X connect 9 0 12 0;
-#X connect 10 0 11 0;
-#X connect 11 0 9 1;
-#X connect 12 0 13 0;
-#X connect 12 1 14 0;
-#X connect 13 0 16 1;
-#X connect 14 0 16 1;
-#X connect 15 0 5 0;
-#X connect 15 1 20 1;
-#X connect 15 2 21 0;
-#X connect 16 0 19 0;
-#X connect 17 0 20 0;
-#X connect 20 0 18 0;
-#X connect 21 0 16 0;
-#X connect 21 1 9 0;
-#X connect 22 0 1 0;
-#X connect 22 0 15 0;
-#X connect 23 0 4 0;
-#X restore 98 416 pd stitch_selector;
-#N canvas 472 330 370 414 stitch_recorder 0;
+#X connect 9 0 11 0;
+#X connect 10 0 23 0;
+#X connect 11 0 21 0;
+#X connect 11 1 20 0;
+#X connect 12 0 5 0;
+#X connect 12 1 16 1;
+#X connect 12 2 17 0;
+#X connect 13 0 15 0;
+#X connect 14 0 16 0;
+#X connect 16 0 22 0;
+#X connect 17 0 13 0;
+#X connect 17 1 9 0;
+#X connect 18 0 1 0;
+#X connect 18 0 12 0;
+#X connect 19 0 4 0;
+#X connect 20 0 13 1;
+#X connect 21 0 13 1;
+#X connect 23 0 9 1;
+#X connect 24 0 23 1;
+#X restore 98 426 pd stitch_selector;
+#N canvas 790 353 370 414 stitch_recorder 0;
 #X obj 222 -18 until;
 #X obj 270 12 + 1;
 #X msg 327 -20 0;
@@ -187,10 +189,10 @@
 #X connect 19 0 6 0;
 #X connect 19 1 5 1;
 #X connect 19 2 3 0;
-#X restore 97 441 pd stitch_recorder;
-#X obj 97 489 s KNITTING;
-#X obj 98 393 r SPECTRUM_FRAME_RATE;
-#N canvas 610 209 468 447 stitch_player 0;
+#X restore 97 451 pd stitch_recorder;
+#X obj 97 499 s KNITTING;
+#X obj 98 403 r SPECTRUM_FRAME_RATE;
+#N canvas 418 124 474 445 stitch_player 0;
 #X obj 20 312 qlist;
 #X msg 305 84 next;
 #X obj 20 -11 inlet;
@@ -260,8 +262,8 @@
 #X connect 27 1 21 0;
 #X connect 27 2 20 0;
 #X connect 27 3 10 0;
-#X restore 97 465 pd stitch_player;
-#N canvas 135 258 410 352 stitch_simulator 0;
+#X restore 97 475 pd stitch_player;
+#N canvas 301 174 410 352 stitch_simulator 0;
 #X obj 36 -293 gemhead;
 #X msg 78 -106 GREY;
 #X obj 123 -293 r SIMULATOR;
@@ -276,16 +278,16 @@
 #X obj 315 -240 == 199;
 #X obj 315 -218 sel 1;
 #X obj 315 -293 r FRAME_POS;
-#X obj 36 -70 pix_set 200 200;
 #X obj 200 -293 r CLEAR_SIMULATOR;
 #X obj 123 -162 trigger bang anything;
 #X obj 200 -192 trigger bang bang;
-#X connect 0 0 14 0;
-#X connect 1 0 14 0;
-#X connect 2 0 16 0;
+#X obj 36 -69 pix_set 200 200;
+#X connect 0 0 17 0;
+#X connect 1 0 17 0;
+#X connect 2 0 15 0;
 #X connect 3 0 4 0;
 #X connect 4 0 9 0;
-#X connect 5 0 14 1;
+#X connect 5 0 17 1;
 #X connect 6 0 7 1;
 #X connect 7 0 6 0;
 #X connect 7 0 5 1;
@@ -295,15 +297,18 @@
 #X connect 11 0 12 0;
 #X connect 12 0 7 1;
 #X connect 13 0 10 0;
-#X connect 14 0 4 0;
-#X connect 15 0 17 0;
-#X connect 16 0 5 0;
-#X connect 16 1 7 0;
-#X connect 17 0 14 1;
-#X connect 17 1 7 1;
-#X restore 97 514 pd stitch_simulator;
-#X obj 145 320 catch~ out;
-#X obj -85 375 throw~ out;
+#X connect 14 0 16 0;
+#X connect 15 0 5 0;
+#X connect 15 1 7 0;
+#X connect 16 0 17 1;
+#X connect 16 1 7 1;
+#X connect 17 0 4 0;
+#X restore 97 524 pd stitch_simulator;
+#X obj 99 301 adc~;
+#X obj 331 157 loadbang;
+#X msg 331 207 0;
+#X obj 331 182 del 1100;
+#X obj 98 378 dac~;
 #N canvas 704 194 368 246 fft 0;
 #X obj 105 23 *~;
 #X obj 132 23 *~;
@@ -344,9 +349,8 @@
 #X connect 15 1 17 0;
 #X connect 16 0 13 1;
 #X connect 17 0 13 1;
-#X restore 98 320 pd fft;
-#X obj 99 271 adc~;
-#X obj 99 372 dac~;
+#X restore 98 340 pd fft;
+#X floatatom 104 259 5 0 0 1 LINE_SPACE - LINE_SPACE;
 #X connect 0 0 2 0;
 #X connect 1 0 2 0;
 #X connect 3 0 0 0;
@@ -373,44 +377,45 @@
 #X connect 24 0 17 0;
 #X connect 25 0 26 0;
 #X connect 26 0 2 0;
-#X connect 27 0 37 0;
-#X connect 28 0 37 0;
 #X connect 29 0 6 0;
 #X connect 31 0 34 0;
 #X connect 33 0 30 0;
 #X connect 34 0 32 0;
-#X connect 36 0 40 0;
-#X connect 36 0 40 1;
-#X connect 38 0 40 0;
-#X connect 38 0 40 1;
+#X connect 36 0 41 0;
+#X connect 36 1 41 0;
+#X connect 37 0 39 0;
+#X connect 38 0 2 0;
 #X connect 39 0 38 0;
-#X connect 39 1 38 0;
-#X coords 0 -1 1 1 155 250 2 100 10;
+#X connect 41 0 40 0;
+#X connect 41 0 40 1;
+#X coords 0 -1 1 1 155 280 2 100 10;
 #X restore -79 -17655 pd controls;
 #N canvas 71 178 1153 478 (subpatch) 0;
 #X array spectrum 200 float 1;
-#A 0 57.3545 14.6717 24.368 20.8763 24.5878 39.7724 80.9552 141.201
-11.6545 9.50437 12.2369 19.8855 50.1354 154.414 121.718 43.9214 30.693
-19.0713 18.8043 13.3427 26.8825 14.5875 11.2347 11.5422 8.68991 12.213
-21.9029 62.5536 4.51849 5.61298 3.60486 17.2619 14.1834 7.5017 3.96222
-2.99028 2.37437 2.14439 1.59114 7.01252 19.2493 15.8963 5.77579 4.58856
-6.36468 3.9282 2.5594 7.65339 6.6993 6.87509 4.27403 4.4075 3.03903
-6.21999 2.0573 2.64151 4.13424 3.97083 4.13783 1.08632 5.71849 2.98623
-0.821644 7.08431 8.25076 2.50227 0.828507 6.29822 8.1574 4.57348 4.1054
-5.54865 6.61373 4.91656 7.59421 10.0263 7.90577 9.50288 5.47503 26.5766
-27.4414 43.5219 95.4611 72.5986 8.70317 69.0928 73.8212 46.4478 17.8151
-13.6472 8.49844 16.804 6.77479 6.38047 6.45787 8.64692 1.98418 7.87246
-4.29273 2.37744 3.21207 1.16766 5.56394 2.74481 3.29337 7.20093 9.21747
-3.1915 1.25117 2.58643 1.92769 1.02369 2.69447 2.08731 1.05696 1.42714
-0.337432 2.76395 0.356186 2.85242 2.92747 4.57148 7.19958 8.32032 6.01505
-7.99712 3.59461 1.41693 3.28957 3.16632 4.05779 2.80759 2.07931 1.20485
-1.54948 0.58353 0.865181 1.41892 0.769387 1.23126 0.956867 0.904511
-1.44664 1.60457 0.328001 0.880406 0.5562 0.745353 2.37901 2.05714 2.36745
-0.854139 0.285165 1.78385 4.76861 1.86657 4.22918 2.25335 6.3831 3.05516
-1.73686 7.67127 11.3224 9.35656 10.6012 10.0408 5.44973 3.35984 1.44773
-7.58662 1.03621 2.55279 3.24719 2.05529 1.73001 2.55479 0.268684 0.809431
-0.533845 0.568679 1.47468 0.971308 0.765198 0.771392 1.52257 0.74788
-1.2338 1.0894 0.250025 0.715968 0.234546 0.511744 0.713777 0.986671
-0.515 0.746087 0.311435 0.204668 0.145257 1.05673;
+#A 0 0.638002 6.18949 16.0035 6.47946 10.0555 8.94265 5.85821 4.59165
+5.18372 3.73997 1.25384 6.8904 3.33008 2.52223 2.7898 1.20099 1.01997
+1.52282 0.331611 0.885269 0.957118 2.53821 0.887172 0.710503 0.954625
+1.76184 1.2973 0.760067 0.459518 0.37504 0.451803 0.48195 0.611447
+1.03193 0.572788 0.485987 0.76274 1.18498 0.250083 0.743764 1.28274
+0.333263 0.34766 0.537827 0.371357 0.303952 0.139192 0.616149 0.122112
+0.16017 0.264049 1.02947 0.598122 0.854471 0.419365 0.596698 0.974685
+0.46541 0.306295 0.186607 0.292979 0.588226 0.495298 0.726528 0.307854
+0.105538 0.648566 0.560926 0.422951 0.692575 0.471223 0.626102 0.647696
+0.399535 0.467177 0.200914 0.283881 0.680892 0.0888616 0.648531 0.365971
+0.273576 0.669782 0.615418 0.721935 0.39879 0.329487 0.383501 0.256234
+0.820643 0.758086 1.07033 0.29921 0.20394 0.79397 0.601254 0.685569
+0.351394 0.664462 0.387254 0.272276 0.376093 0.485072 0.162388 0.341333
+0.375841 0.783464 0.167677 0.410975 0.23463 0.908336 1.07446 0.805468
+0.245068 0.373999 0.218582 0.535276 0.675906 0.639735 0.360426 0.702499
+1.41977 0.537884 0.226891 0.511273 0.0347576 0.363294 0.146884 0.196195
+0.152334 0.645223 0.415228 0.452848 0.254677 0.186921 0.300959 0.303932
+0.029476 0.13673 0.220383 0.113589 0.385065 0.123504 0.254926 0.020998
+0.258564 0.123583 0.433528 0.105464 0.323181 0.0552036 1.92802 0.486421
+0.0907242 0.137104 0.267877 0.284587 0.755995 0.212338 0.390812 0.23888
+0.214991 0.144034 0.278971 0.407709 0.564719 0.236655 0.519946 0.119102
+0.390302 0.0500854 0.268831 0.130454 0.528807 0.0866646 0.0994114 0.171321
+0.437199 0.171783 0.192178 0.196085 1.09299 0.405522 0.172166 0.59309
+0.232641 0.401336 0.332289 0.290458 0.390681 0.278623 0.100587 0.168238
+0.396501 0.474036 0.384181 0.532475 0.207513 0.273316 0.169482;
 #X coords 0 100 199 0 200 150 1 0 0;
-#X restore 81 -17555 graph;
+#X restore 81 -17525 graph;
