@@ -29,7 +29,7 @@ int pixelState = 0;          // store the colore for picels
 byte[] serialData = new byte[MAXSIZE];
 
 boolean DEBUG = false;
-boolean COMPORT = false;
+boolean COMPORT = false; set it true to connect your knitter
 
 void setup() {
 
@@ -54,7 +54,7 @@ void setup() {
   // myImage = loadImage("graphicants_petit_nb.jpg");
 
   // Scan all pixels from the imported picture
-  // The pixels will be maped to vectors "pixels"
+  // The pixels will be mapped to vector "pixels"
   myImage.loadPixels();
 
   ligneIndex = myImage.height;
@@ -64,7 +64,7 @@ void setup() {
   displayReaadLine();
 
   // If the pattern is less than 200 pixel (max size)
-  // Set the pattern in the midel of the knitting machine
+  // Set the pattern in the middel of the knitting machine
   MARGIN = int ( MAXSIZE - myImage.width );
   println(MARGIN/2);
 }
@@ -109,9 +109,7 @@ void draw() {
 void displayPicture(int verticalPos) {
 
   background(255);   // Clear trails
-
-  // TODO : vertical simetry must be achived
-
+  // TODO : vertical symmetry must be achieved
   strokeWeight(0.5);
   // stroke(255);       // White lines  
   stroke(0);         // Black lines  
@@ -132,7 +130,7 @@ void displayPicture(int verticalPos) {
   }
 }
 
-// Draw two red lignes to visualyse the curent frame onto the patern
+// Draw two red lines to visualise the current frame onto the pattern
 void displayReaadLine() {
   strokeWeight(1.1);
   stroke(255, 0, 0);
@@ -140,7 +138,7 @@ void displayReaadLine() {
   line(0, height/2 + PIXELHEIGHT, width, height/2 + PIXELHEIGHT);
 }
 
-// Use keys to moove the pattern and activate debug mode
+// Use keys to move the pattern and activate debug mode
 void keyPressed() {
 
   if (key == 'd') {
