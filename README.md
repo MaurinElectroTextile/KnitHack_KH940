@@ -9,7 +9,7 @@ KnitHack KH940
 These last years hackers and makers have started to open up knitting machines and found new ways to hack them by allowing the machines to be controlled directly by a modern computer. These hacked knitting machines become a sort of textile printer. Having a direct communication between digital tools and the knitting machine pushes the boundaries of traditional knitted patterns and gives us the opportunity to think of new way's in conceiving patterns . 
 
 In this workshop we will explore how our knitting machine can become a way of printing out (generated) data on a textile surface.
-First we will show how the monitoring system and the arduino controls the knitting machine as well as how the mechanics of the machine works in general. We will then experiment hands on with field recordings of our surrounding environment. Our sound cartography’s will then be translated and visualised with Pure Data and then sent to the machine to be knitted out. These patterns can be read as a visual translation of rhythms, silences and noises embedded in a palpable knitted surface." Claire Williams.
+First we will show how the monitoring system and the arduino controls the knitting machine as well as how the mechanics of the machine works in general. We will then experiment hands on with field recordings of our surrounding environment. Our sound cartography’s will then be translated and visualised with Pure Data and then sent to the machine to be knitted out. These patterns can be read as a visual translation of rhythms, silences and noises embedded in a palpable knitted surface." Claire Williams : http://xxxclairewilliamsxxx.wordpress.com/workshops/.
         
 
 BROTHER KH-940
