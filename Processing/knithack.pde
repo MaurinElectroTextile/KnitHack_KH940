@@ -29,7 +29,7 @@ int pixelState = 0;          // store the colore for picels
 byte[] serialData = new byte[MAXSIZE];
 
 boolean DEBUG = false;
-boolean COMPORT = false; set it true to connect your knitter
+boolean COMPORT = true;  // set it true to connect your knitter
 
 void setup() {
 
