@@ -358,7 +358,7 @@
 #X connect 17 0 13 1;
 #X restore 98 340 pd fft;
 #X floatatom 128 262 5 0 200 1 BACKGROUND - BACKGROUND;
-#X obj -106 227 comport 0 19200;
+#X obj -106 227 comport 0 38400;
 #N canvas 457 294 250 326 udp 0;
 #X obj 52 72 udpreceive 9997;
 #N canvas 529 53 494 344 META 0;
