@@ -37,20 +37,20 @@ These patterns can be read as a visual translation of rhythms, silences and nois
 
 ##Arduino firmware
 Before to flash the Arduino firmware you will need to set up the THRESHOLD value by using this calibration sketch :
-``̀
-KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
+```
+ KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
 ```
 This sketch will give you the endStop sensor values.
 You will need to see the max value of the two endStop sensors and choose your THRESHOLD under this values.
 
 The next step is to flash the firmware and perform the calibration :
 ```
-KnitHack_KH940/Arduino/KH940/KH940.ino
+ KnitHack_KH940/Arduino/KH940/KH940.ino
 ```
 These two variables allow you to set the knitter's stitches positions :
 ```
-#define START_POS_L value 
-#define START_POS_R value
+ #define START_POS_L value 
+ #define START_POS_R value
 ```
 
 ##Softs
