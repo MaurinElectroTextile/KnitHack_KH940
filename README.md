@@ -1,5 +1,5 @@
 #KnitHack KH940
-
+##Computer controlled knitting machine
 ![alt tag](https://farm9.staticflickr.com/8830/18264782205_2756bc8632_z_d.jpg)
 
 - This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014
