@@ -1,21 +1,31 @@
 /*
-BROTHER KH-940
-For explanations see the README
-)c( maurin.box@gmail.com
+  BROTHER KH-940
+  For explanations see the README
+  )c( maurin.box@gmail.com
+  I chosed to update the hardwear to https://github.com/AllYarnsAreBeautiful/ayab-hardware
 */
+
+#include <Wire.h>
+#define IIC_HARD
+#include "solenoids.h"
+
+Solenoids m_solenoids;
 
 // HARDWARE CONST
 #define BAUDRATE              38400    // vitesse du port serie
 #define DATA                  200      // number of bytes per frame
 #define SOLENOIDES            16       // number of solenoides
 
+// #define DATA_PIN              A4       // I2C hardhare / Connected to the IO expander
+// #define CLOCK_PIN             A5       // I2C hardhare / Connected to the IO expander
+
 // HARDWARE INPUT SYSTEM
 #define ENC_PIN_1             2        // encoder 1
 #define ENC_PIN_2             3        // encoder 2
 #define ENC_PIN_3             4        // phase encoder
 
-#define END_PIN_R             0        // endLineRight for analog in
-#define END_PIN_L             1        // endLineLeft for analog in
+#define END_PIN_R             0        // end Of Line Right for analog in
+#define END_PIN_L             1        // end Of Line Left for analog in
 
 // SOFTWARE CONST
 #define THRESHOLD             400      // end lines sensors threshold
@@ -27,7 +37,7 @@ For explanations see the README
 
 byte serialData[DATA];
 
-boolean pixelBin[256] = {
+uint8_t pixelBin[256] = {
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -44,11 +54,6 @@ boolean pixelBin[256] = {
   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
-
-// OUTPUT SYSTEM
-const int solenoidsTemp[SOLENOIDES] = {
-  22, 24, 26, 28, 30, 32, 34, 36, 37, 35, 33, 31, 29, 27, 25, 23
 };
 
 int byte_index = 0;                      // index for incomming serial datas
@@ -72,13 +77,16 @@ void setup() {
 
   Serial.begin(BAUDRATE);
 
+  Wire.begin();
+
   pinMode(ENC_PIN_1, INPUT);
   pinMode(ENC_PIN_2, INPUT);
   pinMode(ENC_PIN_3, INPUT);
 
   for (int i = 0; i < 16; i++) {
-    pinMode(solenoidsTemp[i], OUTPUT);
-    digitalWrite(solenoidsTemp[i], LOW);
+    0xFFFF;
+    // pinMode(solenoidsTemp[i], OUTPUT);     // Added shift out register
+    // digitalWrite(solenoidsTemp[i], LOW);   // Added shift out register
   }
 
   attachInterrupt(ENC_PIN_1, rotaryEncoder, RISING);
@@ -88,7 +96,7 @@ void setup() {
 ////////////////////////////////////////////////////////////////////////////////
 void loop() {
 
-  /////////////////////////////////////////////////////////
+  //////////////////////
   // Start from the LEFT
   // Sens when the LEFT end ligne sensor is passed
   if ( carDirection == 1 && analogRead(END_PIN_L) >= THRESHOLD && toggel_left == true ) {
@@ -105,7 +113,7 @@ void loop() {
     if (!DEBUG) Serial.write(HEADER);
   }
 
-  /////////////////////////////////////////////////////////
+  //////////////////////
   // Sens when the RIGHT end ligne sensor is passed
   if ( carDirection == 2 && analogRead(END_PIN_R) >= THRESHOLD && toggel_right == false ) {
     toggel_right = true;
@@ -172,13 +180,15 @@ void rotaryEncoder() {
 // Carriage go LEFT to RIHT
 // Phase encoder is used to synchronise stitch count cycle
 void out1() {
-  
+
   stitch--; // decrease stitch count
   if ( pos < 15 ) pos++;
   if ( phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0 ) {
     pos = 0;
   }
-  digitalWrite( solenoidsTemp[ pos ], pixelBin[ stitch ] );
+  // digitalWrite( solenoidsTemp[pos], pixelBin[stitch] ); // Added shift out register
+  m_solenoids.setSolenoid( pos, pixelBin[stitch]);
+
   if ( DEBUG ) printOut();
 }
 
@@ -186,13 +196,15 @@ void out1() {
 // Carriage go RIGHT to LEFT
 // Phase encoder is used to synchronise stitch count cycle
 void out2() {
-  
+
   stitch++; // increase stitch count
   if ( pos > 0 ) pos--;
   if ( phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0 ) {
     pos = 15;
   }
-  digitalWrite( solenoidsTemp[ pos ], pixelBin[ stitch ] );
+  // digitalWrite( solenoidsTemp[pos], pixelBin[stitch] ); // Added shift out register
+  m_solenoids.setSolenoid( pos, pixelBin[stitch]);
+
   if ( DEBUG ) printOut();
 }
 
