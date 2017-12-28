@@ -1,12 +1,12 @@
-#KnitHack KH940
-
+# KnitHack KH940
+## Computer controlled knitting machine
 ![alt tag](https://farm9.staticflickr.com/8830/18264782205_2756bc8632_z_d.jpg)
 
 - This project is part of the e-textile Summec camp 2014 : http://etextile-summercamp.org/2014
 - The Arduino firmware is a fork of Sokanno KnitHack project : https://github.com/sokanno/KnitHack
 - The Git repository : https://github.com/MaurinElectroTextile/KnitHack_KH940
 
-##About The project
+## About The project
 "Since the 19th century, home knitting machines were a popular manufacturing tool which allowed knitters to produce rapidly knitted items to sell or for household crafts.
 The possibility to use jacquard patterns started with the use of punched hole cards and began to be computerised in the 80's.
 The immediate and low raw material resource needed to produce a knitted surface is what make knitting machines mobile and accessible for experimenting and prototyping.
@@ -21,13 +21,13 @@ Our sound cartography’s will then be translated and visualised with Pure Data 
 These patterns can be read as a visual translation of rhythms, silences and noises embedded in a palpable knitted surface.
 [Claire Williams](http://xxxclairewilliamsxxx.wordpress.com/workshops/)
 
-##Project content
+## Project content
  - Arduino firmware
  - Eagle PCB : I use the [AYAB Arduino shield](https://bitbucket.org/chris007de/ayab-apparat/src/f6e368fbe0a6?at=master)
  - Puredata software
  - Processing software
 
-##BROTHER KH-940 technicals specifications
+## BROTHER KH-940 technicals specifications
 - 200 steacheses
 - Two end lines sensors
 - One encoder wille with two sensors mounted on it :
@@ -35,8 +35,8 @@ These patterns can be read as a visual translation of rhythms, silences and nois
  - The second sensor is a single photo interrupter used for the phase (SHARP - GP1A52LRJ00F)
 - For more specifications you can see the [service manual]( http://maurin.box.free.fr/_DOCs/brother_kh930_knitting_machine_service_manual.pdf)
 
-##Arduino firmware
-Before to flash the Arduino firmware you will need to set up the THRESHOLD value by using this calibration sketch :
+## Arduino firmware
+Before flashing the Arduino firmware you will need to set up the THRESHOLD value by using this calibration sketch :
 ```
  KnitHack_KH940/Arduino/Calibration/endLignes/endLignes.ino
 ```
@@ -53,7 +53,7 @@ These two variables allow you to set the knitter's stitches positions :
  #define START_POS_R value
 ```
 
-##Softs
+## Softs
 
 ###Pure Data
 This knitHack Pure Data patch is working in combination with others sound softwares like Audacity.
@@ -64,7 +64,7 @@ The PD patch will analyse the frequencies of the sound with an FFT algorithm to 
 - [QjackCtl](http://qjackctl.sourceforge.net/) : user interface to controll the JACK sound server. At the same time, it is a patch bay and monitoring tool for JACK.
 - [Audacity](http://audacity.sourceforge.net/) : multitrack audio editor for Linux / Unix, MacOS and Windows. It is designed to easily record, play, and edit digital audio files.
 
-###Step by step 
+### Step by step 
 - A add user to the audio group
  - in a terminal : sudo gpasswd -a "user name" audio
  - restart your user session
@@ -94,12 +94,14 @@ The PD patch will analyse the frequencies of the sound with an FFT algorithm to 
 - ...
 - K start knitting
 
-###Processing
+### Processing
 This simple sketch allow you to send any black and white image.
 
-##knitt
+## knitt
 To start knitting, the carriage must be out of the sticheses on the left side.
 Each time you make a row you must pass the end ligne sensor.
 At the end of the row you will hear two bip.
 A bip when you pass the end ligne sensor end a bip to tell you when all stitch's positions are seted.
 
+# TODO
+...
