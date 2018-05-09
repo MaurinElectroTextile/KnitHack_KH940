@@ -4,23 +4,18 @@
   )c( maurin.box@gmail.com
   I chosed to update the hardwear to https://github.com/AllYarnsAreBeautiful/ayab-hardware
 */
-
 #include <Wire.h>
-#define IIC_HARD
-#include "solenoids.h"
-
-Solenoids m_solenoids;
 
 // HARDWARE CONST
 #define BAUDRATE              38400    // vitesse du port serie
 #define DATA                  200      // number of bytes per frame
 #define SOLENOIDES            16       // number of solenoides
 
-// #define DATA_PIN              A4       // I2C hardhare / Connected to the IO expander
-// #define CLOCK_PIN             A5       // I2C hardhare / Connected to the IO expander
+// #define DATA_PIN           A4       // I2C hardhare / Connected to the IO expander
+// #define CLOCK_PIN          A5       // I2C hardhare / Connected to the IO expander
 
 // HARDWARE INPUT SYSTEM
-#define ENC_PIN_1             2        // encoder 1
+#define ENC_PIN_1             2        // encoder 1 - interrupt driven 
 #define ENC_PIN_2             3        // encoder 2
 #define ENC_PIN_3             4        // phase encoder
 
@@ -29,16 +24,19 @@ Solenoids m_solenoids;
 
 // SOFTWARE CONST
 #define THRESHOLD             400      // end lines sensors threshold
-#define START_POS_L           13       // 
-#define START_POS_R           239      //
+#define START_POS_L           12       // 12
+#define START_POS_R           239      // 239
 
 #define HEADER                64       // 
 #define FOOTER                255      //
 
+#define I2Caddr_sol1_8        0x20     // IO expander chip addres 
+#define I2Caddr_sol9_16       0x21     // IO expander chip addres 
+
 byte serialData[DATA];
 
 uint8_t pixelBin[256] = {
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 16
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,40 +55,39 @@ uint8_t pixelBin[256] = {
 };
 
 int byte_index = 0;                      // index for incomming serial datas
+int offset = 28; // serialData[256];
+
+
 boolean encState1 = false;               // encoder 1 state
 boolean encState2 = false;               // encoder 2 state
 boolean phaseEncoder = false;            // phase encoder state
 boolean lastPhaseEncoder = false;        // last phase encoder state
 int carDirection = 0;                    // direction of carriage　0:unknown　1:right　2:left
 int stitch = 0;                          // the carriage stitch position
-int pos = 0;                             // solenoid index position
+
+uint8_t pos = 0;                         // solenoid index position
 
 boolean toggel_right = true;             // boolean to sens the RISING age of the phase encoder when the carriage going RIGHT
 boolean toggel_left = true;              // boolean to sens the RISING age of the phase encoder when the carriage going LEFT
 boolean toggel_start_pos_right = false;  // boolean to set stitch absolut position
 boolean toggel_start_pos_left = false;   // boolean to set stitch absolut position
 
-boolean DEBUG = false;                   // boolean for serial DEBUGING
+uint16_t solenoids = 0;
+boolean ISR_flag = false;                //
+boolean DEBUG = false;                    // boolean for serial DEBUGING
 
 ////////////////////////////////////////////////////////////////////////////////
 void setup() {
 
-  Serial.begin(BAUDRATE);
-
   Wire.begin();
+
+  Serial.begin(BAUDRATE);
 
   pinMode(ENC_PIN_1, INPUT);
   pinMode(ENC_PIN_2, INPUT);
   pinMode(ENC_PIN_3, INPUT);
 
-  for (int i = 0; i < 16; i++) {
-    0xFFFF;
-    // pinMode(solenoidsTemp[i], OUTPUT);     // Added shift out register
-    // digitalWrite(solenoidsTemp[i], LOW);   // Added shift out register
-  }
-
-  attachInterrupt(ENC_PIN_1, rotaryEncoder, RISING);
-
+  attachInterrupt(0, setISR_flag, RISING); // Interrupt 0 is associated to digital pin 2
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +96,7 @@ void loop() {
   //////////////////////
   // Start from the LEFT
   // Sens when the LEFT end ligne sensor is passed
-  if ( carDirection == 1 && analogRead(END_PIN_L) >= THRESHOLD && toggel_left == true ) {
+  if (carDirection == 1 && analogRead(END_PIN_L) >= THRESHOLD && toggel_left == true) {
     toggel_left = false;
     stitch = START_POS_L; // set the stitch count to absolut position
     if (DEBUG) Serial.print(F("START_LEFT = ")), Serial.print(stitch), Serial.println();
@@ -107,7 +104,7 @@ void loop() {
 
   // Start from the LEFT and read the RIGHT end lignes sensors
   // if the sensor is hited then ask to the computer to send the next array of values
-  if ( carDirection == 1 && analogRead(END_PIN_R) >= THRESHOLD && toggel_right == true ) {
+  if (carDirection == 1 && analogRead(END_PIN_R) <= THRESHOLD && toggel_right == true) {
     toggel_right = false;
     if (DEBUG) Serial.print(F("STOP_RIGHT = ")), Serial.print(stitch), Serial.println();
     if (!DEBUG) Serial.write(HEADER);
@@ -115,7 +112,7 @@ void loop() {
 
   //////////////////////
   // Sens when the RIGHT end ligne sensor is passed
-  if ( carDirection == 2 && analogRead(END_PIN_R) >= THRESHOLD && toggel_right == false ) {
+  if (carDirection == 2 && analogRead(END_PIN_R) <= THRESHOLD && toggel_right == false) {
     toggel_right = true;
     stitch = START_POS_R; // set the stitch count to absolut position
     if (DEBUG) Serial.print(F("START_RIGHT = ")), Serial.print(stitch), Serial.println();
@@ -123,17 +120,20 @@ void loop() {
 
   // Start from the RIGHT and read the LEFT end lignes sensors
   // if the sensor is hited then ask to the computer to send the next array of values
-  if ( carDirection == 2 && analogRead(END_PIN_L) >= THRESHOLD && toggel_left == false ) {
+  if (carDirection == 2 && analogRead(END_PIN_L) >= THRESHOLD && toggel_left == false) {
     toggel_left = true;
     if (DEBUG) Serial.print(F("STOP_LEFT = ")), Serial.print(stitch), Serial.println();
     if (!DEBUG) Serial.write(HEADER);
+  }
+
+  if (ISR_flag) {
+    rotaryEncoder();
   }
 }
 
 //////////////////////////////////////////////////////
 void serialEvent() {
   byte inputValue = 0;
-  int offset = 28;
 
   if (Serial.available() > 0) {
     inputValue = Serial.read();
@@ -151,70 +151,89 @@ void serialEvent() {
   }
 }
 
+void setISR_flag() {
+  ISR_flag = true;
+}
+
 //////////////////////////////////////////////////////
-//
 // This sensor is used to analyse the direction of the carriage
 void rotaryEncoder() {
 
   lastPhaseEncoder = phaseEncoder;
+  encState2 = digitalRead(ENC_PIN_2);
+  phaseEncoder = digitalRead(ENC_PIN_3);
 
-  encState2 = digitalRead( ENC_PIN_2 );
-
-  phaseEncoder = digitalRead( ENC_PIN_3 );
-
-  // Serial.println(phaseEncoder);
-
-  // If carriage go LEFT to RIHT
-  if ( encState2 == false ) {
-    carDirection = 1;
-    out2();
-  }
-  // If carriage go RIGHT to LEFT
-  else if ( encState2 == true ) {
+  if (!encState2) { // If carriage go RIGHT to LEFT
     carDirection = 2;
     out1();
+  }
+  else if (encState2) { // If carriage go LEFT to RIHT
+    carDirection = 1;
+    out2();
   }
 }
 
 //////////////////////////////////////////////////////
 // Carriage go LEFT to RIHT
 // Phase encoder is used to synchronise stitch count cycle
-void out1() {
+inline void out1() {
 
   stitch--; // decrease stitch count
-  if ( pos < 15 ) pos++;
-  if ( phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0 ) {
+  if (stitch < 0) stitch = 0;
+  
+  if (pos < 15) pos++;
+  if (phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0) {
     pos = 0;
   }
-  // digitalWrite( solenoidsTemp[pos], pixelBin[stitch] ); // Added shift out register
-  m_solenoids.setSolenoid( pos, pixelBin[stitch]);
-
-  if ( DEBUG ) printOut();
+  if (pixelBin[stitch] == 1) {
+    bitSet(solenoids, pos);
+  }
+  else {
+    bitClear(solenoids, pos);
+  }
+  writeSolenoids(solenoids);
+  if (DEBUG) printOut();
 }
 
 //////////////////////////////////////////////////////
 // Carriage go RIGHT to LEFT
 // Phase encoder is used to synchronise stitch count cycle
-void out2() {
+inline void out2() {
 
   stitch++; // increase stitch count
-  if ( pos > 0 ) pos--;
-  if ( phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0 ) {
+  if (stitch > 255) stitch = 255;
+
+  if (pos > 0) pos--;
+  if (phaseEncoder != lastPhaseEncoder && lastPhaseEncoder == 0) {
     pos = 15;
   }
-  // digitalWrite( solenoidsTemp[pos], pixelBin[stitch] ); // Added shift out register
-  m_solenoids.setSolenoid( pos, pixelBin[stitch]);
+  if (pixelBin[stitch] == 1) {
+    bitSet(solenoids, pos);
+  }
+  else {
+    bitClear(solenoids, pos);
+  }
+  writeSolenoids(solenoids);
+  if (DEBUG) printOut();
+}
 
-  if ( DEBUG ) printOut();
+inline void writeSolenoids(uint16_t newState) {
+  Wire.beginTransmission(I2Caddr_sol1_8);
+  Wire.write(lowByte(newState));
+  Wire.endTransmission();
+  Wire.beginTransmission(I2Caddr_sol9_16);
+  Wire.write(highByte(newState));
+  Wire.endTransmission();
+  ISR_flag = false;
 }
 
 // Print out DEBUGING values
 void printOut() {
-  Serial.print( carDirection );
-  Serial.print( F(" ") );
-  Serial.print( phaseEncoder );
-  Serial.print( F(" ") );
-  Serial.print( pos );
-  Serial.print( F(" ") );
-  Serial.println( stitch );
+  Serial.print(carDirection);
+  Serial.print(F(" "));
+  Serial.print(phaseEncoder);
+  Serial.print(F(" "));
+  Serial.print(pos);
+  Serial.print(F("\t"));
+  Serial.println(stitch);
 }
